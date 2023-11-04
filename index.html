@@ -1,0 +1,613 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <title>Test</title>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --card1: "url('textures/back.png')";
+            --card2: "url('textures/back.png')";
+            --card3: "url('textures/back.png')";
+            --card4: "url('textures/back.png')";
+            --card5: "url('textures/back.png')";
+            --card6: "url('textures/back.png')";
+            --card7: "url('textures/back.png')";
+            --card8: "url('textures/back.png')";
+            --card9: "url('textures/back.png')";
+            --card10: "url('textures/back.png')";
+            --card11: "url('textures/back.png')";
+            --card12: "url('textures/back.png')";
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 0 20px;
+            height: 100vh;
+            margin: auto;
+        }
+
+
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 5vh repeat(4, 1fr);
+            justify-items: center;
+            align-items: center;
+            grid-gap: 5%;
+        }
+
+        .card {
+            line-height: 0;
+            background: url("textures/back.png") no-repeat;
+            background-size: cover;
+            border-radius: 512px;
+            border-color: #9b9da4;
+            border-style: solid;
+            border-width: 1px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .image:before {
+            content: "";
+            display: inline-block;
+            width: 1px;
+            height: 0;
+            padding-bottom: 100%;
+        }
+
+        .head {
+            grid-column: 1 / span 3;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: self-start;
+            align-items: center;
+            grid-gap: 5%;
+            justify-content: space-between;
+            align-content: center;
+            width: 100%;
+        }
+        .head-buttons {
+            justify-self:flex-end;
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .card img {
+            border-radius: 512px;
+            object-fit: cover;
+            width: 100%;
+            max-height: 100%;
+            opacity: 0;
+            /*transition: opacity 0.500ms cubic-bezier(0, 0.57, 0.58, 1);*/
+        }
+
+        .open img, .open .image, .guessed {
+            opacity: 1 !important;
+            /*transition: opacity 0.500ms cubic-bezier(0, 0.57, 0.58, 1);*/
+        }
+
+        .card:has(.guessed), .card:has(.start) {
+            animation-duration: 700ms;
+            animation-name: jump;
+        }
+
+        @keyframes jump {
+            from {
+                bottom: 0;
+            }
+            50% {
+                bottom: 5px;
+            }
+            to {
+                bottom: 0;
+            }
+        }
+
+
+        .image {
+            background-image: url("textures/back.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 512px;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card1 {
+            background-image: var(--card1);
+        }
+
+        .card2 {
+            background-image: var(--card2);
+        }
+
+        .card3 {
+            background-image: var(--card3);
+        }
+
+        .card4 {
+            background-image: var(--card4);
+        }
+
+        .card5 {
+            background-image: var(--card5);
+        }
+
+        .card6 {
+            background-image: var(--card6);
+        }
+
+        .card7 {
+            background-image: var(--card7);
+        }
+
+        .card8 {
+            background-image: var(--card8);
+        }
+
+        .card9 {
+            background-image: var(--card9);
+        }
+
+        .card10 {
+            background-image: var(--card10);
+        }
+
+        .card11 {
+            background-image: var(--card11);
+        }
+
+        .card12 {
+            background-image: var(--card12);
+        }
+
+        .head .btn {
+            border: none;
+            width:64px;
+            height: 64px;
+            padding: 2px 8px;
+            background-size: cover;
+            margin-left:30px;
+        }
+
+        .settings-button {
+            background: url(textures/setting.png) no-repeat top left;
+        }
+        .restart-button {
+            background: url(textures/restart.png) no-repeat top left;
+        }
+        .volume-button-on {
+            background: url(textures/soundon.png) no-repeat top left;
+        }
+        .volume-button-off {
+            background: url(textures/soundoff.png) no-repeat top left;
+        }
+        .btn-clicked {
+            -webkit-animation: btn-rotate 500ms forwards linear;
+            -moz-animation: btn-rotate 500ms forwards linear;
+            -o-animation: btn-rotate 500ms forwards linear;
+            animation: btn-rotate 500ms forwards linear;
+        }
+
+        @-webkit-keyframes btn-color {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }
+        @-moz-keyframes btn-color
+        {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }@-ms-keyframes btn-color {
+             100% {
+                 -webkit-transform: rotate(360deg);
+                 transform:rotate(360deg);
+             }
+         }
+        @-o-keyframes btn-color {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }
+        @keyframes btn-rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }
+
+        .counter{
+            font-size: 2rem;
+        }
+
+        .overlay{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            display:none;
+            background-color: #9b9da4;
+            opacity: 0.9;
+        }
+        .overlay-content{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            display:none;
+        }
+        .settings{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 30px 30px;
+            justify-items: center;
+            grid-gap: 2vh;
+        }
+        .overlay-wrapper{
+            position: relative;
+            margin: 0 auto;
+            top: 25%;
+            width: 80%;
+        }
+        .class-btn {
+            width:100%;
+            font-size: 2rem;
+            border-radius: 10px;
+            min-height:75px;
+            opacity:1;
+        }
+
+        .modal.show .overlay, .modal.show .overlay-content {
+            display: block;
+        }
+
+        .class-selected {
+            color: white;
+            background-color: #ff5722;
+        }
+        .info{
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            text-align: center;
+            width: 100vw;
+            margin: auto;
+        }
+
+        @media only screen and (max-device-width: 480px) {
+            .restart-button{
+                margin-left:60px !important;
+            }
+        }
+        @media only screen and (min-device-width: 480px) {
+            .container {
+                max-width: 400px;
+            }
+            .head .btn {
+                width:32px;
+                height: 32px;
+            }
+
+        }
+
+
+    </style>
+    <script src="https://telegram.org/js/games.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTDJD9RZ48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XTDJD9RZ48');
+    </script>
+</head>
+<body>
+<div class=container>
+    <div class="wrapper">
+        <div class="head">
+            <div class="counter">Тыки: <strong id="count">0</strong></div>
+            <div class="head-buttons">
+                <div id="volume" class="btn volume-button-on"></div>
+                <div id="settings" class="btn settings-button"> </div>
+                <div id="restart" class="btn restart-button"> </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card1 image" id="card1"></div>
+        </div>
+        <div class="card">
+            <div class="card2 image" id="card2"></div>
+        </div>
+        <div class="card">
+            <div class="card3 image" id="card3"></div>
+        </div>
+        <div class="card">
+            <div class="card4 image" id="card4"></div>
+        </div>
+        <div class="card">
+            <div class="card5 image" id="card5"></div>
+        </div>
+        <div class="card">
+            <div class="card6 image" id="card6"></div>
+        </div>
+        <div class="card">
+            <div class="card7 image" id="card7"></div>
+        </div>
+        <div class="card">
+            <div class="card8 image" id="card8"></div>
+        </div>
+        <div class="card">
+            <div class="card9 image" id="card9"></div>
+        </div>
+        <div class="card">
+            <div class="card10 image" id="card10"></div>
+        </div>
+        <div class="card">
+            <div class="card11 image" id="card11"></div>
+        </div>
+        <div class="card">
+            <div class="card12 image" id="card12"></div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="overlay"></div>
+        <div class="overlay-content">
+        <div class="overlay-wrapper">
+            <div class="settings"></div>
+            <a href="https://t.me/Mxkuryatkov" target="_blank" class="info">@Mxkuryatkov 2023</a>
+        </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    let soundOn = true
+    const CARDS_NUMBER = 12;
+
+    let clickSound = new Audio('sounds/click.mp3')
+    let winSound = new Audio('sounds/win.mp3')
+    let guessedSound = new Audio('sounds/guessed.mp3')
+
+    let cardsCount = 0
+    let classIndex = "teachers";
+    let openCards = [];
+    let countGuessed = 0;
+
+    // создаем массивы со всеми картами, с картами 1ой группы, 2ой группы и 3ей группы
+    let groups = [[], [], [], [], [], []]
+
+    let countEl = document.getElementById('count'); 
+    async function getConfig() {
+        const response = await fetch("config.json");
+        return response.json();
+    }
+
+    let config = {};
+    getConfig().then(data => {
+        config = data
+        let { classIndex: _classIndex } = window.TelegramGameProxy.initParams
+        if (_classIndex && config['classes'][_classIndex]){
+            classIndex = _classIndex
+        }
+        start();
+        renderSettings();
+        setPageTitle();
+    });
+
+    function setPageTitle(title){
+        if (title) document.title = title
+        else if (config['classes'][classIndex]['title']) document.title = config['classes'][classIndex]['title']
+    }
+
+
+    function renderSettings(){
+        const container = document.querySelector('.settings');
+        const classMap = config['classes'];
+        let selectedClassElement = null;
+        Object.keys(classMap).forEach((item)=>{
+            let el = document.createElement("button")
+            el.innerText = classMap[item]["title"];
+            el.classList.add("class-btn")
+            if (item === classIndex) {
+                el.classList.add('class-selected');
+                selectedClassElement = el;
+            }
+            el.addEventListener("click", () => {
+                classIndex = item;
+                selectedClassElement.classList.remove('class-selected')
+                el.classList.add('class-selected')
+
+                selectedClassElement = el;
+                start();
+                setPageTitle();
+                document.querySelector('.modal').classList.remove('show')
+            })
+            container.appendChild(el);
+        })
+    }
+    //show all
+
+    // let wrapper = document.querySelector('.wrapper');
+    // if (wrapper) {
+    //     for (let classIndex in config.classes) {
+    //         for (let i = 1; i <= config.classes[classIndex]; i++) {
+    //             let card = document.createElement("div");
+    //             card.classList.add('card')
+    //             card.classList.add('d')
+    //             let image = document.createElement("div")
+    //             image.classList.add('image');
+    //             image.style.backgroundImage = `url('textures/${classIndex}/${i}.jpg')`
+    //             image.title = `${classIndex}/${i}.jpg`
+    //             card.appendChild(image);
+    //             wrapper.appendChild(card);
+    //         }
+    //     }
+
+
+    // }
+    // функция выбирания двух рандомных карточек из основного массива
+    function getMultipleRandom(arr, num) {
+        const shuffled = [...arr].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, num);
+    }
+
+
+
+    // "тасуем" карты
+    function shuffleCards() {
+
+        let cardsArr = []
+
+        for (let i = 1; i <= CARDS_NUMBER; i++) {
+            cardsArr.push(`card${i}`)
+        }
+
+        groups.forEach(function (item, index) {
+            item = getMultipleRandom(cardsArr, 2)
+            groups[index] = item
+            cardsArr = cardsArr.filter(function (element) {
+                return !item.includes(element)
+            })
+        })
+
+        let images = getRandomClassImages(classIndex)
+        let r = document.querySelector(':root');
+        groups.forEach(function (item, index) {
+            item.forEach(function (i) {
+                r.style.setProperty(`--${i}`, `url('textures/${classIndex}/${images[index]}.jpg')`)
+            })
+        })
+
+    }
+
+
+    function getRandomClassImages(classIndex) {
+        let images = Array.from({length: config.classes[classIndex]["count"]}, (_, index) => index + 1)
+        return images.sort(() => 0.5 - Math.random());
+    }
+
+
+    // закрываем открытые карты
+    function closeCards() {
+        document.querySelectorAll('.open').forEach(function (el) {
+            el.classList.remove('open')
+            cardsCount -= 1
+        })
+    }
+
+    // определяем открытые карты
+    function isGuessed() {
+        let result = false
+
+        groups.forEach(function (c) {
+            result = openCards.every(function (i) {
+                return c.includes(i)
+            })
+            if (result) {
+                c.forEach(function (item) {
+                    document.getElementById(item).classList.add('guessed');
+                    countGuessed++;
+                    if (soundOn) guessedSound.play()
+                })
+            }
+        })
+        if (countGuessed === CARDS_NUMBER){
+            if (soundOn) winSound.play()
+        }
+
+        return result
+    }
+
+    function onClick(e) {
+        let can = !this.classList.contains('open') && !e.target.classList.contains('guessed') &&  countGuessed < CARDS_NUMBER
+
+        if (can){
+            if (cardsCount < 2) {
+                countEl.innerText = parseInt(countEl.innerText) + 1;
+                this.classList.add('open')
+                openCards.push(e.target.id)
+                cardsCount += 1
+                if (soundOn) clickSound.play()
+
+                if (cardsCount === 2) {
+                    isGuessed()
+                    setTimeout(function () {
+                        openCards = []
+                        closeCards()
+                    }, 500)
+                }
+            }
+        }
+
+
+    }
+
+    function start(){
+        cardsCount = 0;
+        countGuessed = 0;
+        countEl.innerText = 0;
+        openCards = [];
+        shuffleCards()
+        document.querySelectorAll('.open').forEach(function (item) {
+            item.classList.remove('open')
+        })
+        document.querySelectorAll('.guessed').forEach(function (item) {
+            item.classList.remove('guessed')
+        })
+        document.querySelectorAll('.image').forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('start')
+                setTimeout(() => item.classList.remove('start'),500)
+            },index * 150)
+        })
+
+    }
+    
+    document.querySelectorAll('div.card').forEach(el => {
+        el.addEventListener('click', onClick)
+    })
+    document.getElementById('volume').addEventListener('click',function(e){
+        soundOn = !soundOn
+        if (soundOn){
+            e.target.classList.add('volume-button-on')
+            e.target.classList.remove('volume-button-off')
+        }
+        else{
+            e.target.classList.add('volume-button-off')
+            e.target.classList.remove('volume-button-on')
+        }
+    })
+
+    document.getElementById('restart').addEventListener('click', function (e) {
+        e.target.classList.add('btn-clicked')
+        start()
+        setTimeout(() => e.target.classList.remove('btn-clicked'), 510)
+
+    })
+    document.getElementById('settings').addEventListener('click', function (e) {
+        e.target.classList.add('btn-clicked')
+        document.querySelector('.modal').classList.add('show');
+        setPageTitle('Настройки')
+        setTimeout(() => e.target.classList.remove('btn-clicked'), 510)
+    })
+
+
+
+</script>
+</body>
+</html>
