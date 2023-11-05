@@ -3,6 +3,7 @@
 <head>
     <title>Test</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root {
             --card1: "url('textures/back.png')";
@@ -74,7 +75,6 @@
         }
         .head-buttons {
             justify-self:flex-end;
-            margin-top: 10px;
             display: flex;
         }
 
@@ -170,11 +170,11 @@
 
         .head .btn {
             border: none;
-            width:64px;
-            height: 64px;
+            width: 32px;
+            height: 32px;
             padding: 2px 8px;
             background-size: cover;
-            margin-left:30px;
+            margin-left: 30px;
         }
 
         .settings-button {
@@ -287,19 +287,34 @@
             margin: auto;
         }
 
-        @media only screen and (max-device-width: 480px) {
-            .restart-button{
-                margin-left:60px !important;
+
+        @media (max-width: 360px){
+            .counter{
+                font-size: 1.4rem;
             }
         }
-        @media only screen and (min-device-width: 480px) {
+        @media (max-width: 330px){
+            .head .btn{
+                margin-left: 10px;
+            }
+            .counter{
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 250px){
+            .head .btn{
+                width: 16px;
+                height: 16px;
+
+            }
+        }
+        @media (min-width: 480px) {
             .container {
                 max-width: 400px;
+                padding-left: 0;
+                padding-right: 0;
             }
-            .head .btn {
-                width:32px;
-                height: 32px;
-            }
+
 
         }
 
