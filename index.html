@@ -24,11 +24,18 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden
+        }
+
         .container {
             padding: 0 20px;
             height: 100vh;
             margin: auto;
         }
+
 
         .wrapper {
             display: grid;
@@ -70,10 +77,12 @@
             align-content: center;
             width: 100%;
         }
+
         .head-buttons {
-            justify-self:flex-end;
+            justify-self: flex-end;
             display: flex;
         }
+
 
         .card img {
             border-radius: 512px;
@@ -173,19 +182,27 @@
             background-size: cover;
             margin-left: 30px;
         }
+        .btn:first-child{
+            margin-left: unset;
+        }
+
 
         .settings-button {
             background: url(textures/setting.png) no-repeat top left;
         }
+
         .restart-button {
             background: url(textures/restart.png) no-repeat top left;
         }
+
         .volume-button-on {
             background: url(textures/soundon.png) no-repeat top left;
         }
+
         .volume-button-off {
             background: url(textures/soundoff.png) no-repeat top left;
         }
+
         .btn-clicked {
             -webkit-animation: btn-rotate 500ms forwards linear;
             -moz-animation: btn-rotate 500ms forwards linear;
@@ -196,75 +213,82 @@
         @-webkit-keyframes btn-color {
             100% {
                 -webkit-transform: rotate(360deg);
-                transform:rotate(360deg);
+                transform: rotate(360deg);
             }
         }
-        @-moz-keyframes btn-color
-        {
+
+        @-moz-keyframes btn-color {
             100% {
                 -webkit-transform: rotate(360deg);
-                transform:rotate(360deg);
+                transform: rotate(360deg);
             }
-        }@-ms-keyframes btn-color {
-             100% {
-                 -webkit-transform: rotate(360deg);
-                 transform:rotate(360deg);
-             }
-         }
+        }
+
+        @-ms-keyframes btn-color {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
         @-o-keyframes btn-color {
             100% {
                 -webkit-transform: rotate(360deg);
-                transform:rotate(360deg);
+                transform: rotate(360deg);
             }
         }
+
         @keyframes btn-rotate {
             100% {
                 -webkit-transform: rotate(360deg);
-                transform:rotate(360deg);
+                transform: rotate(360deg);
             }
         }
 
-        .counter{
+        .counter {
             font-size: 2rem;
         }
 
-        .overlay{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100vw;
-            height:100vh;
-            display:none;
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
             background-color: #9b9da4;
             opacity: 0.9;
         }
-        .overlay-content{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100vw;
-            height:100vh;
-            display:none;
+
+        .overlay-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
         }
-        .settings{
+
+        .settings {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            padding: 30px 30px;
             justify-items: center;
             grid-gap: 2vh;
+            margin: auto;
         }
-        .overlay-wrapper{
+
+        .overlay-wrapper {
             position: relative;
             margin: 0 auto;
             top: 25%;
             width: 80%;
         }
+
         .class-btn {
-            width:100%;
-            font-size: 2rem;
+            width: 100%;
             border-radius: 10px;
-            min-height:75px;
-            opacity:1;
+            min-height: 40px;
+            opacity: 1;
         }
 
         .modal.show .overlay, .modal.show .overlay-content {
@@ -275,7 +299,8 @@
             color: white;
             background-color: #ff5722;
         }
-        .info{
+
+        .info {
             position: fixed;
             bottom: 30px;
             left: 0;
@@ -285,26 +310,30 @@
         }
 
 
-        @media (max-width: 360px){
-            .counter{
+        @media (max-width: 360px) {
+            .counter {
                 font-size: 1.4rem;
             }
         }
-        @media (max-width: 330px){
-            .head .btn{
+
+        @media (max-width: 330px) {
+            .head .btn {
                 margin-left: 10px;
             }
-            .counter{
+
+            .counter {
                 font-size: 1rem;
             }
         }
-        @media (max-width: 250px){
-            .head .btn{
+
+        @media (max-width: 250px) {
+            .head .btn {
                 width: 16px;
                 height: 16px;
 
             }
         }
+
         @media (min-width: 480px) {
             .container {
                 max-width: 400px;
@@ -312,6 +341,9 @@
                 padding-right: 0;
             }
 
+            .settings {
+                max-width: 400px;
+            }
 
         }
 
@@ -322,7 +354,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTDJD9RZ48"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-XTDJD9RZ48');
@@ -335,8 +371,8 @@
             <div class="counter">Тыки: <strong id="count">0</strong></div>
             <div class="head-buttons">
                 <div id="volume" class="btn volume-button-on"></div>
-                <div id="settings" class="btn settings-button"> </div>
-                <div id="restart" class="btn restart-button"> </div>
+                <div id="settings" class="btn settings-button"></div>
+                <div id="restart" class="btn restart-button"></div>
             </div>
         </div>
         <div class="card">
@@ -379,10 +415,10 @@
     <div class="modal">
         <div class="overlay"></div>
         <div class="overlay-content">
-        <div class="overlay-wrapper">
-            <div class="settings"></div>
-            <a href="https://t.me/Mxkuryatkov" target="_blank" class="info">@Mxkuryatkov 2023</a>
-        </div>
+            <div class="overlay-wrapper">
+                <div class="settings"></div>
+                <a href="https://t.me/Mxkuryatkov" target="_blank" class="info">@Mxkuryatkov 2023</a>
+            </div>
         </div>
     </div>
 
@@ -403,7 +439,8 @@
     // создаем массивы со всеми картами, с картами 1ой группы, 2ой группы и 3ей группы
     let groups = [[], [], [], [], [], []]
 
-    let countEl = document.getElementById('count'); 
+    let countEl = document.getElementById('count');
+
     async function getConfig() {
         const response = await fetch("config.json");
         return response.json();
@@ -412,26 +449,29 @@
     let config = {};
     getConfig().then(data => {
         config = data
-        let { classIndex: _classIndex } = window.TelegramGameProxy.initParams
-        if (_classIndex && config['classes'][_classIndex]){
+        let {classIndex: _classIndex} = window.TelegramGameProxy.initParams
+        if (_classIndex && config['classes'][_classIndex]) {
             classIndex = _classIndex
         }
+        document.querySelectorAll('div.card').forEach(el => {
+            el.addEventListener('click', onClick)
+        })
         start();
         renderSettings();
         setPageTitle();
     });
 
-    function setPageTitle(title){
+    function setPageTitle(title) {
         if (title) document.title = title
         else if (config['classes'][classIndex]['title']) document.title = config['classes'][classIndex]['title']
     }
 
 
-    function renderSettings(){
+    function renderSettings() {
         const container = document.querySelector('.settings');
         const classMap = config['classes'];
         let selectedClassElement = null;
-        Object.keys(classMap).forEach((item)=>{
+        Object.keys(classMap).forEach((item) => {
             let el = document.createElement("button")
             el.innerText = classMap[item]["title"];
             el.classList.add("class-btn")
@@ -452,6 +492,7 @@
             container.appendChild(el);
         })
     }
+
     //show all
 
     // let wrapper = document.querySelector('.wrapper');
@@ -477,7 +518,6 @@
         const shuffled = [...arr].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, num);
     }
-
 
 
     // "тасуем" карты
@@ -538,7 +578,7 @@
                 })
             }
         })
-        if (countGuessed === CARDS_NUMBER){
+        if (countGuessed === CARDS_NUMBER) {
             if (soundOn) winSound.play()
         }
 
@@ -546,9 +586,9 @@
     }
 
     function onClick(e) {
-        let can = !this.classList.contains('open') && !e.target.classList.contains('guessed') &&  countGuessed < CARDS_NUMBER
+        let can = !this.classList.contains('open') && !e.target.classList.contains('guessed') && countGuessed < CARDS_NUMBER
 
-        if (can){
+        if (can) {
             if (cardsCount < 2) {
                 countEl.innerText = parseInt(countEl.innerText) + 1;
                 this.classList.add('open')
@@ -569,7 +609,7 @@
 
     }
 
-    function start(){
+    function start() {
         cardsCount = 0;
         countGuessed = 0;
         countEl.innerText = 0;
@@ -584,22 +624,19 @@
         document.querySelectorAll('.image').forEach((item, index) => {
             setTimeout(() => {
                 item.classList.add('start')
-                setTimeout(() => item.classList.remove('start'),500)
-            },index * 150)
+                setTimeout(() => item.classList.remove('start'), 500)
+            }, index * 150)
         })
 
     }
-    
-    document.querySelectorAll('div.card').forEach(el => {
-        el.addEventListener('click', onClick)
-    })
-    document.getElementById('volume').addEventListener('click',function(e){
+
+
+    document.getElementById('volume').addEventListener('click', function (e) {
         soundOn = !soundOn
-        if (soundOn){
+        if (soundOn) {
             e.target.classList.add('volume-button-on')
             e.target.classList.remove('volume-button-off')
-        }
-        else{
+        } else {
             e.target.classList.add('volume-button-off')
             e.target.classList.remove('volume-button-on')
         }
@@ -617,7 +654,6 @@
         setPageTitle('Настройки')
         setTimeout(() => e.target.classList.remove('btn-clicked'), 510)
     })
-
 
 
 </script>
